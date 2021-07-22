@@ -1,0 +1,237 @@
+@function breakpoints($breakpoint) {
+  @return map-get($grid-breakpoints, $breakpoint);
+}
+
+$grid-breakpoints: (
+  xxs: 360px,
+  xs: 481px,
+  sm: 768px,
+  smplus: 769px,
+  md: 992px,
+  lg: 1024px,
+  xl: 1200px,
+  xxl: 1450px,
+  xxxl: 1650px,
+);
+
+//fonts
+$fonts: (
+  f-english: (
+    "Lato",
+    Meiryo,
+    "Hiragino Mincho Pro",
+    "Hiragino Kaku Gothic Pro",
+    "Tahoma",
+    "Osaka",
+  ),
+  f-japan: (
+    "Meiryo",
+    "Hiragino Mincho Pro",
+    "Hiragino Kaku Gothic Pro",
+    "Tahoma",
+    "Osaka",
+  ),
+  f-chinese: (
+    "Microsoft Yahei",
+    Meiryo,
+    "Hiragino Mincho Pro",
+    "Hiragino Kaku Gothic Pro",
+    "Tahoma",
+    "Osaka",
+  ),
+  f-korean: (
+    "Malgun Gothic",
+    Meiryo,
+    "Hiragino Mincho Pro",
+    "Hiragino Kaku Gothic Pro",
+    "Tahoma",
+    "Osaka",
+  ),
+  f-taiwanese: (
+    "Microsoft Jhenghei",
+    Meiryo,
+    "Hiragino Mincho Pro",
+    "Hiragino Kaku Gothic Pro",
+    "Tahoma",
+    "Osaka",
+  ),
+);
+
+@mixin min-xxxl {
+  @media screen and (min-width: #{breakpoints(xxxl)}) {
+    @content;
+  }
+}
+
+@mixin min-xxl {
+  @media screen and (min-width: #{breakpoints(xxl)}) {
+    @content;
+  }
+}
+
+@mixin min-xl {
+  @media screen and (min-width: #{breakpoints(xl)}) {
+    @content;
+  }
+}
+
+@mixin min-lg {
+  @media screen and (min-width: #{breakpoints(lg)}) {
+    @content;
+  }
+}
+
+@mixin min-sm {
+  @media (min-width: #{breakpoints(md)}) {
+    @content;
+  }
+}
+
+@mixin min-sm {
+  @media (min-width: #{breakpoints(sm)}) {
+    @content;
+  }
+}
+
+@mixin min-smplus {
+  @media (min-width: #{breakpoints(sm)} + 1px) {
+    @content;
+  }
+}
+
+@mixin min-xs {
+  @media screen and (min-width: #{breakpoints(xs)}) {
+    @content;
+  }
+}
+
+@mixin min-xxs {
+  @media screen and (max-width: #{breakpoints(xxs)}) {
+    @content;
+  }
+}
+
+@mixin scrollbar {
+  @include min-lg {
+    &::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #c8dff5;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #1b77d2;
+    }
+
+    // &::-webkit-scrollbar,
+    // &::-webkit-scrollbar-track,
+    // &::-webkit-scrollbar-thumb {
+    //     //   visibility: hidden;
+    // }
+
+    &:hover {
+      &::-webkit-scrollbar,
+      &::-webkit-scrollbar-track,
+      &::-webkit-scrollbar-thumb {
+        visibility: visible;
+      }
+    }
+  }
+}
+
+@mixin m-btn-bgr($bgr, $color, $bgr-activated: $color, $color-activated: $bgr) {
+  background-color: $bgr;
+  color: $color;
+  font-weight: bold;
+
+  &:hover {
+    background-color: $bgr-activated;
+    color: $color-activated;
+    text-decoration: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.m-btn {
+  border-radius: 3px;
+  font-weight: 500;
+  font-size: 14px;
+  text-align: center;
+  outline: none;
+  &__yellow {
+    border: 1px solid #ffd25d;
+    @include m-btn-bgr(#ffd25d, #232e48);
+    &:hover {
+      border: 1px solid #232e48;
+    }
+    &:disabled {
+      background: lightgray;
+      border: 1px solid lightgray;
+    }
+  }
+  &__black {
+    border: 1px solid #232e48;
+    @include m-btn-bgr(white, #232e48);
+    &:hover {
+      border: 1px solid #232e48;
+    }
+    &:disabled {
+      background: lightgray;
+      border: 1px solid lightgray;
+      color: white;
+    }
+  }
+  &__blue {
+    border: 1px solid #1a489c;
+    @include m-btn-bgr(#1a489c, white);
+    &:hover {
+      border: 1px solid #1a489c;
+    }
+    &:disabled {
+      background: lightgray;
+      border: 1px solid lightgray;
+      opacity: 0.7;
+      cursor: not-allowed;
+      &:hover {
+        color: white;
+      }
+    }
+  }
+  &__white {
+    border: 1px solid #d1d1d1;
+    @include m-btn-bgr(white, #1a489c);
+    &:hover {
+      border: 1px solid #1a489c;
+    }
+    &:disabled {
+      background: lightgray;
+      border: 1px solid lightgray;
+      opacity: 0.7;
+      cursor: not-allowed;
+      &:hover {
+        color: #1a489c;
+      }
+    }
+  }
+}
+
+@mixin rules {
+  .rules {
+    font-size: 13px;
+    margin-left: 15px;
+    &__item {
+      margin-bottom: 15px;
+      list-style: disc;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

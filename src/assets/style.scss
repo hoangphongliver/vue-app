@@ -1,0 +1,13 @@
+@import "icomoon";
+@import '~bootstrap/scss/bootstrap.scss';
+@import '~bootstrap-vue/src/index.scss';
+ul,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Lato';
+}
+
+li {
+  list-style: none;
+}
